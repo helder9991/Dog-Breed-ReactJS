@@ -46,7 +46,7 @@ const Register: React.FC = () => {
         pending: 'Carregando...'
       })
     } catch (err) {
-      throw new Error('Erro durante a requisição')
+      toast.error('Tente novamente mais tarde')
     } finally {
       setLoading(prevState => !prevState)
     }
