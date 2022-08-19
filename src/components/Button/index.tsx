@@ -9,6 +9,7 @@ type IProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const Button: React.FC<IProps> = ({ className, text, buttonType = 'next', ...props }) => (
   <Container
+    type="button"
     className={className}
     buttonType={buttonType}
     {...props}
