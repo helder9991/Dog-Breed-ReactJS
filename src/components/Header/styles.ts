@@ -3,6 +3,7 @@ import Tooltip from '../Tooltip'
 
 export const Container = styled.div`
   position: absolute;
+  display: flex;
   right: 9%;
   top: 50px;
 
@@ -17,5 +18,9 @@ export const Container = styled.div`
   }
 `
 export const FloatingMessage = styled(Tooltip)`
+
+  & + & {
+    margin-left: 15px;
+  }
 
 `

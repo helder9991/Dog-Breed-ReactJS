@@ -1,12 +1,24 @@
 import React, { MouseEvent, useCallback, useState } from 'react'
 import { HiOutlineMail, HiOutlineLockClosed } from 'react-icons/hi'
 import { Id, toast } from 'react-toastify'
+import { useAuth } from '../../hooks/auth'
 
 import { api } from '../../services/api'
 import { controlledInput } from '../../utils/controlledInput'
 import { validate } from './schemaValidation'
 
 import { Button, Container, Content, Input, Title } from './styles'
+
+interface ILoginResponse {
+  user: {
+    _id: string
+    email: string
+    token: string
+    createdAt: string
+    updatedAt: string
+    __v: number
+  }
+}
 
 const Register: React.FC = () => {
   const defaultInputValue = {
@@ -19,6 +31,8 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState(defaultInputValue)
   const [password, setPassword] = useState(defaultInputValue)
   const [loading, setLoading] = useState(false)
+
+  const { signIn } = useAuth()
 
   const handleSubmit = useCallback(async (e: MouseEvent): Promise<Id | void> => {
     e.preventDefault()
@@ -37,7 +51,7 @@ const Register: React.FC = () => {
 
     setLoading(prevState => !prevState)
     try {
-      await toast.promise(api.post('/register', {
+      const { data } = await toast.promise(api.post<ILoginResponse>('/register', {
         email: email.value,
         password: password.value
       }), {
@@ -45,6 +59,8 @@ const Register: React.FC = () => {
         success: 'Usuário logado com sucesso!',
         pending: 'Carregando...'
       })
+
+      signIn(data.user)
     } catch (err) {
       toast.error('Tente novamente mais tarde')
     } finally {

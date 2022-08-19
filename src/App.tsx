@@ -13,6 +13,7 @@ import dark from './styles/themes/dark'
 
 import Routes from './routes'
 import usePersistedState from './hooks/persistedState'
+import AppProvider from './hooks'
 
 type ITheme = 'dark' | 'light'
 
@@ -40,8 +41,10 @@ const App: React.FC = () => {
           pauseOnHover
           theme={theme}
         />
-        <Header toggleTheme={toggleTheme} />
-        <Routes />
+        <AppProvider>
+          <Header toggleTheme={toggleTheme} />
+          <Routes />
+        </AppProvider>
       </Router>
     </ThemeProvider>
   )
