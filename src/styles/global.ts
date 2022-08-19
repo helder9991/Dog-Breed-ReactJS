@@ -10,7 +10,6 @@ export default createGlobalStyle`
   }
   html {
     display:flex;
-    height: 100%;
   }
   body {
     background: ${props => props.theme.colors.background};
@@ -31,5 +30,12 @@ export default createGlobalStyle`
     display: flex;
     height: 100vh;
     width: 100vw;
+  }
+
+  html, html body, body {
+    width: 100vw !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    overflow-x: hidden;
   }
 `

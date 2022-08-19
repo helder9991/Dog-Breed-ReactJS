@@ -23,6 +23,11 @@ export const Content = styled.form`
 
   box-shadow: 3px 2px 9px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+
+  @media (max-width: 670px) {
+    width: 80%;
+    min-width: 360px;
+  }
 `
 
 export const Title = styled.h1`

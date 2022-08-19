@@ -18,13 +18,15 @@ const Header: React.FC<IProps> = ({ toggleTheme }) => {
   return (
     <Container>
       <FloatingMessage title='Alterar tema'>
-        <button type='button' onClick={toggleTheme}>
+        <button type='button' onClick={toggleTheme} title="Alterar tema">
           <HiSun size={32} style={{ color: 'white' }} />
+          <b>Alterar tema</b>
         </button>
       </FloatingMessage>
       <FloatingMessage title='Deslogar'>
-        <button type='button' onClick={handleLogout}>
+        <button type='button' onClick={handleLogout} title="Deslogar">
           <HiLogout size={32} style={{ fill: 'white' }} />
+          <b>Deslogar</b>
         </button>
       </FloatingMessage>
     </Container>
