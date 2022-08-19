@@ -1,20 +1,19 @@
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ThemeProvider } from 'styled-components'
 
 import Tooltip from '../../components/Tooltip'
 
-import theme from '../../styles/themes/light'
+import AppTestContainer from '../mock/AppTestContainer'
 
 describe('Tooltip Component', () => {
   it('should be able to render the Tooltip', () => {
     render(
-      <ThemeProvider theme={theme}>
+      <AppTestContainer>
         <Tooltip title='Aviso'>
           <div>icon</div>
         </Tooltip>
-      </ThemeProvider>
+      </AppTestContainer>
     )
 
     expect(screen.getByText('Aviso')).toBeInTheDocument()

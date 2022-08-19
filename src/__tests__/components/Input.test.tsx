@@ -2,11 +2,11 @@ import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
 import { HiOutlineMail } from 'react-icons/hi'
 import { render, screen } from '@testing-library/react'
-import { ThemeProvider } from 'styled-components'
 
 import Input from '../../components/Input'
 
 import theme from '../../styles/themes/light'
+import AppTestContainer from '../mock/AppTestContainer'
 
 describe('Input Component', () => {
   let state = {
@@ -22,7 +22,7 @@ describe('Input Component', () => {
 
   it('should be able to render the input', () => {
     render(
-      <ThemeProvider theme={theme}>
+      <AppTestContainer>
         <Input
           title='email'
           type="email"
@@ -33,7 +33,7 @@ describe('Input Component', () => {
           onChange={setValue}
 
         />
-      </ThemeProvider>
+      </AppTestContainer>
     )
 
     expect(screen.getByText('email')).toBeInTheDocument()
@@ -52,7 +52,7 @@ describe('Input Component', () => {
     }
 
     render(
-      <ThemeProvider theme={theme}>
+      <AppTestContainer>
         <Input
           title='email'
           type="email"
@@ -63,7 +63,7 @@ describe('Input Component', () => {
           onChange={setValue}
 
         />
-      </ThemeProvider>
+      </AppTestContainer>
     )
     expect(screen.getByTestId('inputContent')).toHaveStyle(`box-shadow: 0 0 0 2.5px ${theme.colors.error}`)
     expect(screen.getByTestId('errorIcon')).toBeInTheDocument()
@@ -83,7 +83,7 @@ describe('Input Component', () => {
     })
 
     render(
-      <ThemeProvider theme={theme}>
+      <AppTestContainer>
         <Input
           title='email'
           type="email"
@@ -94,7 +94,7 @@ describe('Input Component', () => {
           onChange={setValue}
 
         />
-      </ThemeProvider>
+      </AppTestContainer>
     )
 
     expect(screen.getByTestId('errorIconContainer')).toHaveStyle('visibility: hidden;')

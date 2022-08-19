@@ -1,12 +1,11 @@
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import { ThemeProvider } from 'styled-components'
 import userEvent from '@testing-library/user-event'
 
 import Header from '../../components/Header'
 
-import theme from '../../styles/themes/light'
+import AppTestContainer from '../mock/AppTestContainer'
 
 describe('Header Component', () => {
   let currentTheme = 'light'
@@ -16,9 +15,9 @@ describe('Header Component', () => {
 
   it('should be able to render the Header', () => {
     render(
-      <ThemeProvider theme={theme}>
+      <AppTestContainer>
         <Header toggleTheme={toggleTheme} />
-      </ThemeProvider>
+      </AppTestContainer>
     )
 
     expect(screen.getByText('Alterar tema')).toBeInTheDocument()
@@ -26,9 +25,9 @@ describe('Header Component', () => {
 
   it('should be able to toggle theme', () => {
     render(
-      <ThemeProvider theme={theme}>
+      <AppTestContainer>
         <Header toggleTheme={toggleTheme} />
-      </ThemeProvider>
+      </AppTestContainer>
     )
 
     userEvent.click(screen.getByRole('button'))
