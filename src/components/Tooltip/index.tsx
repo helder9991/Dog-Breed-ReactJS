@@ -8,9 +8,9 @@ interface IProps {
   children: React.ReactNode
 }
 
-const Tooltip: React.FC<IProps> = ({ title, className = '', children }) => {
+const Tooltip: React.FC<IProps> = ({ title, className = '', children, ...props }) => {
   return (
-    <Container className={className}>
+    <Container className={className} {...props}>
       {children}
       <span>{title}</span>
     </Container>

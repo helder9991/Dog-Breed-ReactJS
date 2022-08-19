@@ -18,14 +18,14 @@ type IProps = InputHTMLAttributes<HTMLInputElement> & {
 const Input: React.FC<IProps> = ({ className, error, icon: Icon, title, type, placeholder, ...props }) => (
   <Container className={className}>
     <h1>{title}</h1>
-    <Content hasError={error.hasError}>
+    <Content hasError={error.hasError} data-testid="inputContent">
       <IconContainer>
-        <Icon size={20} />
+        <Icon size={20} data-testid="inputIcon" />
       </IconContainer>
 
       <input type={type} placeholder={placeholder} {...props} />
-      <Error title={error.errorMessage} hasError={error.hasError}>
-        <HiExclamationCircle size={20} />
+      <Error title={error.errorMessage} hasError={error.hasError} data-testid="errorIconContainer">
+        <HiExclamationCircle size={20} data-testid="errorIcon" />
       </Error>
     </Content>
   </Container>
