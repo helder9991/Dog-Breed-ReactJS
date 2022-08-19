@@ -10,7 +10,7 @@ interface IProps {
 const Header: React.FC<IProps> = ({ toggleTheme }) => (
   <Container>
     <FloatingMessage title='Alterar tema'>
-      <button onClick={toggleTheme}>
+      <button type='button' onClick={toggleTheme}>
         <HiSun size={32} style={{ color: 'white' }} />
       </button>
     </FloatingMessage>
