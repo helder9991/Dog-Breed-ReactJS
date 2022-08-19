@@ -9,18 +9,18 @@ import Input from '../../components/Input'
 import theme from '../../styles/themes/light'
 
 describe('Input Component', () => {
-  it('should be able to render the input', () => {
-    const state = {
-      value: '',
-      error: {
-        hasError: false,
-        errorMessage: ''
-      }
+  let state = {
+    value: '',
+    error: {
+      hasError: false,
+      errorMessage: ''
     }
-    const setValue = jest.fn((e) => {
-      state.value = e.target.value
-    })
+  }
+  const setValue = (e: any): void => {
+    state.value = e.target.value
+  }
 
+  it('should be able to render the input', () => {
     render(
       <ThemeProvider theme={theme}>
         <Input
@@ -43,16 +43,13 @@ describe('Input Component', () => {
   })
 
   it('should be able to show an error icon, tooltip message and change border color', () => {
-    const state = {
+    state = {
       value: '',
       error: {
         hasError: true,
         errorMessage: 'Algum erro'
       }
     }
-    const setValue = jest.fn((e) => {
-      state.value = e.target.value
-    })
 
     render(
       <ThemeProvider theme={theme}>
@@ -74,7 +71,7 @@ describe('Input Component', () => {
   })
 
   it('should not be able to show an error icon with tooltip message', () => {
-    const state = {
+    state = {
       value: '',
       error: {
         hasError: false,
