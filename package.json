@@ -2,6 +2,7 @@
   "name": "dog-breed",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://helder9991.github.io/Dog-Breed-ReactJS",
   "dependencies": {
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
@@ -24,6 +25,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --testMatch='**/**.test.(ts|tsx)'",
     "eject": "react-scripts eject"
   },
