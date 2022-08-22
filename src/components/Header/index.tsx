@@ -18,7 +18,7 @@ const Header: React.FC<IProps> = ({ toggleTheme }) => {
   return (
     <Container>
       <FloatingMessage title='Alterar tema'>
-        <button type='button' onClick={toggleTheme} title="Alterar tema">
+        <button type='button' onClick={toggleTheme} title="Alterar tema" data-testid="theme">
           <HiSun size={32} style={{ color: 'white' }} />
           <b>Alterar tema</b>
         </button>
@@ -26,7 +26,7 @@ const Header: React.FC<IProps> = ({ toggleTheme }) => {
 
       {Object.keys(user).length > 0 && (
         <FloatingMessage title='Deslogar'>
-          <button type='button' onClick={handleLogout} title="Deslogar">
+          <button type='button' onClick={handleLogout} title="Deslogar" data-testid="signOut">
             <HiLogout size={32} style={{ fill: 'white' }} />
             <b>Deslogar</b>
           </button>
