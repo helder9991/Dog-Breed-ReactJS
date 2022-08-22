@@ -13,7 +13,7 @@ interface IUser {
 }
 
 interface IUseAuth {
-  user: object
+  user: IUser
   signIn: (user: IUser) => void
   signOut: () => void
 }
