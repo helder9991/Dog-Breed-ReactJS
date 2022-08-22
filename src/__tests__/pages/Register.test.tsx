@@ -9,6 +9,20 @@ import { api } from '../../services/api'
 
 const apiMock = new MockAdapter(api)
 
+const mockedUsedNavigate = jest.fn()
+const mockedSignIn = jest.fn()
+
+jest.mock('../../hooks/auth', () => ({
+  useAuth: () => ({
+    signIn: mockedSignIn
+  })
+}))
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate
+}))
+
 describe('Register Component', () => {
   beforeEach(() => {
     const data = {
@@ -79,6 +93,8 @@ describe('Register Component', () => {
 
     expect(await screen.findByText('Carregando...')).toBeInTheDocument()
     expect(await screen.findByText('Usuário logado com sucesso!')).toBeInTheDocument()
+    expect(mockedSignIn).toBeCalledTimes(1)
+    expect(mockedUsedNavigate).toBeCalledTimes(1)
   })
 
   it('should be able to throw a server error', async () => {
