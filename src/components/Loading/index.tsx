@@ -10,6 +10,7 @@ const Loading: React.FC<IProps> = ({ className, width }) => (
   <Container
     className={className}
     width={width}
+    data-testid="loading"
   />
 )
 
