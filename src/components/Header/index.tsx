@@ -1,6 +1,7 @@
 import React from 'react'
 import { HiSun, HiLogout } from 'react-icons/hi'
 import { useAuth } from '../../hooks/auth'
+import { useTab } from '../../hooks/tab'
 
 import { Container, FloatingMessage } from './styles'
 
@@ -10,9 +11,11 @@ interface IProps {
 
 const Header: React.FC<IProps> = ({ toggleTheme }) => {
   const { signOut, user } = useAuth()
+  const { setTab } = useTab()
 
   const handleLogout = (): void => {
     signOut()
+    setTab([])
   }
 
   return (
