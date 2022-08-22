@@ -10,7 +10,7 @@ jest.spyOn(Storage.prototype, 'removeItem')
 const user = {
   _id: '62fcf90eff45bc1402c932af',
   email: 'user@mail.com',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyYzJkYzExZC0zODlkLTRiMjQtYjk2Ny05MTE5MTJiOTA0NTUiLCJzdWIiOiI2MmZjZjkwZWZmNDViYzE0MDJjOTMyYWYiLCJpYXQiOjE2NjA3NDU5OTgsImV4cCI6MTY2MjA0MTk5OH0.d375a2mIkmjO1YPsp4Hn5J4Un-poQbHP6ygGaYaiBl0',
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyYzJkYzExZC0zODlkLTRiMjQtYjk2Ny05MTE5MTJiOTA0NTUiLCJzdWIiOiI2MmZjZjkwZWZmNDViYzE0MDJjOTMyYWYiLCJpYXQiOjE2NjA3NDU5OTgsImV4cCI6MTY2MTE5MDk5OX0.FkMek2ajKvOF_F1jw6DjTbnRAetFmJF04GaXconyY80',
   createdAt: '2022-08-17T14:19:58.981Z',
   updatedAt: '2022-08-17T14:19:58.981Z',
   __v: 0
@@ -53,5 +53,18 @@ describe('Auth Hook', () => {
     })
 
     expect(result.current.user).toMatchObject(user)
+  })
+
+  it('should be able to signOut user if token expires', async () => {
+    jest
+      .spyOn(Storage.prototype, 'getItem')
+      .mockImplementation(() => (JSON.stringify(user)))
+
+    const { result } = renderHook(() => useAuth(), {
+      wrapper: AuthProvider
+    })
+
+    expect(result.current.user).toMatchObject(user)
+    expect(localStorage.removeItem).toBeCalledTimes(1)
   })
 })
