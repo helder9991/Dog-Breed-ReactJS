@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Header: React.FC<IProps> = ({ toggleTheme }) => {
-  const { signOut } = useAuth()
+  const { signOut, user } = useAuth()
 
   const handleLogout = (): void => {
     signOut()
@@ -23,12 +23,16 @@ const Header: React.FC<IProps> = ({ toggleTheme }) => {
           <b>Alterar tema</b>
         </button>
       </FloatingMessage>
-      <FloatingMessage title='Deslogar'>
-        <button type='button' onClick={handleLogout} title="Deslogar">
-          <HiLogout size={32} style={{ fill: 'white' }} />
-          <b>Deslogar</b>
-        </button>
-      </FloatingMessage>
+
+      {Object.keys(user).length > 0 && (
+        <FloatingMessage title='Deslogar'>
+          <button type='button' onClick={handleLogout} title="Deslogar">
+            <HiLogout size={32} style={{ fill: 'white' }} />
+            <b>Deslogar</b>
+          </button>
+        </FloatingMessage>
+
+      )}
     </Container>
   )
 }

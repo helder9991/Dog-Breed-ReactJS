@@ -1,5 +1,6 @@
 import React, { MouseEvent, useCallback, useState } from 'react'
 import { HiOutlineMail, HiOutlineLockClosed } from 'react-icons/hi'
+import { useNavigate } from 'react-router-dom'
 import { Id, toast } from 'react-toastify'
 import { useAuth } from '../../hooks/auth'
 
@@ -28,11 +29,13 @@ const Register: React.FC = () => {
       errorMessage: ''
     }
   }
+
   const [email, setEmail] = useState(defaultInputValue)
   const [password, setPassword] = useState(defaultInputValue)
   const [loading, setLoading] = useState(false)
 
   const { signIn } = useAuth()
+  const navigate = useNavigate()
 
   const handleSubmit = useCallback(async (e: MouseEvent): Promise<Id | void> => {
     e.preventDefault()
@@ -61,6 +64,7 @@ const Register: React.FC = () => {
       })
 
       signIn(data.user)
+      navigate('/list')
     } catch (err) {
       toast.error('Tente novamente mais tarde')
     } finally {
