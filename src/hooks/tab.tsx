@@ -46,7 +46,7 @@ export const TabProvider: React.FC<ITabProps> = ({ children }) => {
   )
 }
 
-export function useTab(tab?: ITab[]): IUseTab {
+export function useTab(): IUseTab {
   const context = useContext(TabContext)
 
   if (Object.keys(context).length === 0) throw new Error('useTab must be used within an TabProvider')
