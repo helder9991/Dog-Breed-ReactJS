@@ -18,7 +18,7 @@ import AppProvider from './hooks'
 type ITheme = 'dark' | 'light'
 
 const App: React.FC = () => {
-  const [theme, setTheme] = usePersistedState<ITheme>('@DobBreed:theme', light)
+  const [theme, setTheme] = usePersistedState<ITheme>('@DobBreed:theme', light.title)
 
   const toggleTheme = useCallback(() => {
     setTheme((prevState: string) =>
