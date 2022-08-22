@@ -45,7 +45,9 @@ const List: React.FC = () => {
       setLoading(true)
       const selectedTab = getSelectedTab()
 
-      if (selectedTab == null || selectedTab.name === animals?.breed) return
+      if (selectedTab == null || (selectedTab.name === animals?.breed && animals?.breed !== undefined)) {
+        return setLoading(false)
+      }
 
       try {
         const { data } = await api.get<IResponse>('/list', {
@@ -53,10 +55,12 @@ const List: React.FC = () => {
             breed: selectedTab.name.toLowerCase()
           }
         })
+
         setAnimals(data)
-        setLoading(false)
       } catch (err) {
         toast.error('Aconteceu algum erro. Tente novamente mais tarde')
+      } finally {
+        setLoading(false)
       }
     })()
   }, [getSelectedTab()?.name])
@@ -73,11 +77,11 @@ const List: React.FC = () => {
     <Container>
       <TabsContainer />
       <Content loading={`${loading}`}>
-        {loading && (<Loading width={40} />)}
+        {loading && (<Loading data-testid="loading" width={40} />)}
         {(Object.keys(animals).length > 0 && !loading) &&
           animals.list.map((link) => (
             <button key={link} onClick={() => handleShowImageModal(link)}>
-              <img src={link} />
+              <img src={link} alt={link} />
             </button>
           ))}
 
@@ -90,7 +94,7 @@ const List: React.FC = () => {
       {
         showImageModal.length > 0 && (
           <ImageModal handleClose={handleClose}>
-            <img src={showImageModal} />
+            <img src={showImageModal} alt={showImageModal} />
           </ImageModal>
         )
       }
